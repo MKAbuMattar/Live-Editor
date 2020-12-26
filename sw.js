@@ -1,4 +1,4 @@
-const cacheName = 'hello';
+const cacheName = 'live-editor-v1';
 const staticAssets = [
     './',
     './index.html',
