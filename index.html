@@ -2,6 +2,12 @@
 <html>
 
 <head>
+        <script>
+        if (window.navigator.userAgent.indexOf("Trident/") > 0) {
+            alert("Internet Explorer is not supported.")
+            window.location.replace("/Live-Editor/")
+        }
+    </script>
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WVBZVV7ZLZ"></script>
     <script>
