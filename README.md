@@ -3,6 +3,7 @@
 # Live Editor
 
 - Real-Time preview
+- Auto closing tag
 - Code folding
 - Offline version
 
