@@ -3,9 +3,9 @@
   "name": "Live Editor",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "./assets/icons/favicon.ico",
       "type": "image/x-icon",
-      "sizes": "32x32 24x24 16x16",
+      "sizes": "64x64 32x32 24x24 16x16",
       "purpose": "any maskable"
     },
     {
