@@ -11,4 +11,4 @@
 
 ### new version:
 - solving bugs when using JavaScript.
-- solving CSS change main page.
+- solving CSS change main page LOL.
