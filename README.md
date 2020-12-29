@@ -8,3 +8,7 @@
 - Offline version
 
 > This app works best on PC. Using this app on a phone could be frustrating.
+
+### new version:
+- solving bugs when using JavaScript.
+- solving CSS change main page.
