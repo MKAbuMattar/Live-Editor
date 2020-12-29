@@ -92,15 +92,8 @@ html {
 }
 
 .tabcontent {
-  height: 71vh;
+  height: 70vh;
   display: none;
-}
-
-#preview {
-  width: 100%;
-  overflow: auto;
-  width: 100%;
-  border: none;
 }
 
 .tabcontent__preview {
@@ -114,6 +107,14 @@ html {
   position: relative;
   height: 100%;
   width: 100%;
+}
+
+#preview {
+  overflow: auto;
+  position: relative;
+  height: 115%;
+  width: 102%;
+  border: none;
 }
 
 .text {

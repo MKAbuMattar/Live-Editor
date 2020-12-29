@@ -10,9 +10,11 @@
     $scope.updatePreview = function (object) {
 
       var preview = document.getElementById("preview");
+
       var html = HTML__Edit.getValue();
       var css = CSS__Edit.getValue();
       var js = JS__Edit.getValue();
+
       var content = [];
       content.push("<style>");
       content.push(css);
@@ -22,6 +24,7 @@
       content.push("<script>")
       content.push(js);
       content.push("<" + "/script>");
+
       preview.contentWindow.document.open();
       preview.contentWindow.document.write(content.join(""));
       preview.contentWindow.document.close();
