@@ -96,6 +96,13 @@ html {
   display: none;
 }
 
+#preview {
+  width: 100%;
+  overflow: auto;
+  width: 100%;
+  border: none;
+}
+
 .tabcontent__preview {
   padding: 20px;
   padding-top: 50px;

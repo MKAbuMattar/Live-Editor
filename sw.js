@@ -5,6 +5,7 @@ const staticAssets = [
     './assets/css/normalize.css',
     './assets/css/style.css',
     './assets/js/script.js',
+    './assets/js/index.js'
 ];
 
 self.addEventListener('install', async e => {

@@ -15,64 +15,62 @@ function openPage(pageName, elmnt, color) {
 // Get the element with id="defaultOpen" and click on it
 document.getElementById("default").click();
 
-function editor() {
-    if ($('#HTML__editor').length) {
-        var targetHtml = $('#HTML__editor').data('target');
-        var editorHtml = ace.edit("HTML__editor");
-        editorHtml.setValue($(targetHtml).val());
-        editorHtml.setTheme("ace/theme/idle_fingers");
-        editorHtml.getSession().setMode("ace/mode/html");
-        editorHtml.getSession().setUseWrapMode(true);
-        editorHtml.on('change', function () {
-            $(targetHtml).val(editorHtml.getValue());
-            $(targetHtml).trigger('change');
-
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', function () {
+        navigator.serviceWorker.register('/Live-Editor/sw.js').then(function (registration) {
+            // Registration was successful
+            console.log('ServiceWorker registration successful with scope: ', registration
+                .scope);
+        }, function (err) {
+            // registration failed :(
+            console.log('ServiceWorker registration failed: ', err);
         });
-    }
-    if ($('#CSS__editor').length) {
-        var targetCss = $('#CSS__editor').data('target');
-        var editorCss = ace.edit("CSS__editor");
-        editorCss.setValue($(targetCss).val());
-        editorCss.setTheme("ace/theme/idle_fingers");
-        editorCss.getSession().setMode("ace/mode/css");
-        editorCss.getSession().setUseWrapMode(true);
-        editorCss.on('change', function () {
-            $(targetCss).val(editorCss.getValue());
-            $(targetCss).trigger('change');
-        });
-    }
-    if ($('#JS__editor').length) {
-        var targetJs = $('#JS__editor').data('target');
-        var editorJs = ace.edit("JS__editor");
-        editorJs.setValue($(targetJs).val());
-        editorJs.setTheme("ace/theme/idle_fingers");
-        editorJs.getSession().setMode("ace/mode/javascript");
-        editorJs.getSession().setUseWrapMode(true);
-        editorJs.on('change', function () {
-            $(targetJs).val(editorJs.getValue());
-            $(targetJs).trigger('change');
-        });
-    }
+    });
 }
 
-function livePreview() {
-    if ($('.preview').length) {
-
-        $('#HTML,#CSS,#JS').on('change', function () {
-            var el = $(this);
-            var target = el.data('type');
-            var val = el.val();
-            $('.preview').find(target).html(val);
-        });
-
-    }
+// When the user clicks on the button, scroll to the top of the document
+function topFunction() {
+    document.body.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
 }
 
-editor();
-livePreview();
+let deferredPrompt;
+const addBtn = document.querySelector('.floating__btn');
+addBtn.style.display = 'none';
 
-$(window).on('load', function () {
-    if ($('.preview').length) {
-        $('#HTML,#CSS,#JS').trigger('change');
-    }
+window.addEventListener('beforeinstallprompt', (e) => {
+    // Prevent Chrome 67 and earlier from automatically showing the prompt
+    e.preventDefault();
+    // Stash the event so it can be triggered later.
+    deferredPrompt = e;
+    // Update UI to notify the user they can add to home screen
+    addBtn.style.display = 'block';
+
+    addBtn.addEventListener('click', (e) => {
+        // hide our user interface that shows our A2HS button
+        addBtn.style.display = 'none';
+        // Show the prompt
+        deferredPrompt.prompt();
+        // Wait for the user to respond to the prompt
+        deferredPrompt.userChoice.then((choiceResult) => {
+            if (choiceResult.outcome === 'accepted') {
+                console.log('User accepted the A2HS prompt');
+            } else {
+                console.log('User dismissed the A2HS prompt');
+            }
+            deferredPrompt = null;
+        });
+    });
+});
+
+window.addEventListener("beforeinstallprompt", function (beforeInstallPromptEvent) {
+    beforeInstallPromptEvent.preventDefault(); // Prevents immediate prompt display
+
+    // Shows prompt after a user clicks an "install" button
+    installButton.addEventListener("click", function (mouseEvent) {
+        // you should not use the MouseEvent here, obviously
+        beforeInstallPromptEvent.prompt();
+    });
+
+    installButton.hidden = false; // Make button operable
 });
