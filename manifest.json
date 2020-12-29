@@ -3,11 +3,6 @@
   "name": "Live Editor",
   "icons": [
     {
-      "src": "./assets/icons/favicon.ico",
-      "type": "image/x-icon",
-      "purpose": "any maskable"
-    },
-    {
       "src": "./assets/icons/logo192.png",
       "type": "image/png",
       "sizes": "192x192"
